@@ -7,18 +7,25 @@ function createSuperhero(superheroData) {
     return superhero.save();
 }
 
-function getAllSuperheroes(){
-    return Superhero.find();
+function getAllSuperheroes(pageNumber) {
+    return Superhero
+        .find({})
+        .limit(5)
+        .skip(5 * pageNumber);
 }
 
-function getSuperheroById(id){
+function countAllSuperheroes() {
+    return Superhero.countDocuments({});
+}
+
+function getSuperheroById(id) {
     return Superhero.findById(id);
 }
 
-function deleteSuperhero(id){
+function deleteSuperhero(id) {
     return Superhero.findById(id).then(
         response => {
-            if(!response) return null;
+            if (!response) return null;
             else {
                 return Superhero.deleteOne(response);
             }
@@ -26,10 +33,10 @@ function deleteSuperhero(id){
     )
 }
 
-function updateSuperhero(id, updatedSuperheroData){
+function updateSuperhero(id, updatedSuperheroData) {
     return Superhero.findById(id).then(
         superhero => {
-            if(!superhero) return null;
+            if (!superhero) return null;
 
             superhero.nickname = updatedSuperheroData.nickname;
             superhero.real_name = updatedSuperheroData.real_name;
@@ -48,5 +55,6 @@ module.exports = {
     getAllSuperheroes,
     deleteSuperhero,
     updateSuperhero,
-    getSuperheroById
+    getSuperheroById,
+    countAllSuperheroes
 }

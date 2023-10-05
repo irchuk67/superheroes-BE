@@ -17,7 +17,7 @@ const superheroSchema = new mongoose.Schema({
         type: String
     },
     images:{
-        type: [Object]
+        type: [String]
     }
 })
 

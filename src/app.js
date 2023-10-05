@@ -13,6 +13,8 @@ app.use(cors({
     origin: '*'
 }));
 
+app.use(express.json({limit: 1024 * 1024 * 100})) //100 Mb
+
 require('./models/Superhero');
 require('./models/Superpower');
 app.use(require('./routes'))
