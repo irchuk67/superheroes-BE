@@ -2,13 +2,11 @@
 
 0) On your computer should be installed git, npm, node.js.
 1) On GitHub, find the link of the project and copy it.
-2) Open terminal in your computer, choose desireable location for the project;
+2) Open terminal in your computer, choose desirable location for the project;
 3) In terminal input next command: git clone "copied link from GitHub";
 4) Go to the created directory, with the project.
-5) In terminal, input next command: npm install. This will install necessary dependencies;
-6) After dependencies installation, input next command: npm start.
-
-
+5) In terminal, input next command: `npm install`. This will install necessary dependencies;
+6) After dependencies installation, input next command: `npm start`.
 
 # Decision log
 ## Database
