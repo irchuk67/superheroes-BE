@@ -1,5 +1,6 @@
 const express = require('express');
 const {createSuperpower, getAllSuperpowers, deleteSuperpower} = require("../../services/superpowerService");
+const {validateSuperhero} = require("../../validator/superhero");
 const router = express.Router();
 
 

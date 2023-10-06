@@ -34,6 +34,7 @@ function deleteSuperhero(id) {
 }
 
 function updateSuperhero(id, updatedSuperheroData) {
+    console.log(updatedSuperheroData)
     return Superhero.findById(id).then(
         superhero => {
             if (!superhero) return null;

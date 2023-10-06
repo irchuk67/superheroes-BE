@@ -1,6 +1,7 @@
 const express = require('express');
 const {createSuperhero, getAllSuperheroes, deleteSuperhero, updateSuperhero, getSuperheroById, countAllSuperheroes} = require("../../services/superheroService");
 const {NOT_FOUND, CREATED, OK, NO_CONTENT} = require("../../constants/HTTPCodes");
+const {superheroValidator, validateSuperhero} = require("../../validator/superhero");
 const router = express.Router();
 
 
@@ -43,8 +44,11 @@ router.delete('/:superheroId', async (req, res) => {
 })
 router.use(express.json());
 
-router.post('/', async (req, res) => {
+router.post('/', superheroValidator('createSuperhero'), async (req, res) => {
     console.log(req.body)
+    if (!validateSuperhero(req, res)){
+        return;
+    }
     const newSuperhero = await createSuperhero(req.body);
     if (!newSuperhero) {
         res.status(NOT_FOUND).send('no Superhero created')
@@ -53,7 +57,10 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:superheroId', async (req, res) => {
+router.put('/:superheroId', superheroValidator('updateSuperhero'), async (req, res) => {
+    if (!validateSuperhero(req, res)){
+        return;
+    }
     const updatedSuperhero = await updateSuperhero(req.params.superheroId, req.body);
     if(!updatedSuperhero){
         res.status(NOT_FOUND).send('no Superhero created')
